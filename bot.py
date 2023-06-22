@@ -28,7 +28,6 @@ async def check_user_command(message: types.Message):
     
     await message.reply(reply_message)
 
-# Handler for unknown commands
 @dp.message_handler()
 async def unknown_command(message: types.Message):
     await message.reply("Unknown command. Type /start to start the bot.")
@@ -38,12 +37,10 @@ async def start_bot():
     await dp.start_polling()
 
 if __name__ == '__main__':
-    # Run the bot
     try:
         asyncio.run(start_bot())
     except KeyboardInterrupt:
         pass
     finally:
-        # Clean up resources (if any)
         asyncio.run(dp.storage.close())
         asyncio.run(dp.storage.wait_closed())
